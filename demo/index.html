@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>mpopup.js demo</title>
+  <style>
+  .popup{background: green; color: #fff; margin: 20px; position: relative; top: 20px;}
+  .popup.hide{display: none;}
+  </style>
+</head>
+<body>
+
+  <h1>mpopup.js demo</h1>
+
+  <p>This is a plugin for mobile popup modals. Zepto or jQuery required!</p>
+
+  <div>
+    <button id="open">open modal</button>
+  </div>
+
+  <div class="popup hide">
+    <h3>popup title</h3>
+    <div>
+      <button class="close">close modal</button>
+    </div>
+    <p>This is popup modal content!</p>
+    <p>Popup's height is not constant!</p>
+  </div>
+
+  <script src="http://cdn.bootcss.com/zepto/1.1.6/zepto.min.js"></script>
+  <script src="../mpopup.js"></script>
+  <script>
+  (function(){
+    var popApi = new Mpopup({
+      modal: $(".popup"),
+      btnClose: $(".popup .close"),
+      className: "popupWrap",
+      zIndex: 5000,
+      maskClose: true,
+      paddingTop: 80,
+      onShown: function(){
+        console.log("showned!");
+      },
+      onHidden: function(){
+        console.log("hidden!");
+      }
+    });
+
+    $(".popup").removeClass("hide");
+
+    $("#open").click(function(){
+      popApi.show();
+    });
+  })();
+  </script>
+
+</body>
+</html>
